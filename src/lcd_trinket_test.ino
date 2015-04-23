@@ -36,7 +36,7 @@ void loop() {
   uint8_t buttons;                       // button read value
  
   lcd.setCursor(0,0);
-  lcd.print("hi");
+  lcd.print("h");
  
   // buttons = lcd.readButtons();  // read the buttons on the shield
  

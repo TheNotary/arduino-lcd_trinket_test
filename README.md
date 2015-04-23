@@ -1,3 +1,5 @@
+This repo is not functional yet.  
+
 # LcdTrinketTest
 
 This repo is just a basic way of getting a trinket to work with Adafruit's LCD module with keypad

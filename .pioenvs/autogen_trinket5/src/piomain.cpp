@@ -13,7 +13,6 @@
 #include <TinyAdafruit_RGBLCDShield.h>
 
 
-
 #define OFF 0x0
 #define RED 0x1
 #define YELLOW 0x3
@@ -30,7 +29,7 @@ void setup();
 void loop();
  
 void printzero();
-#line 26 "lcd_trinket_test.ino"
+#line 25 "lcd_trinket_test.ino"
 Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
 
 int8_t offset = 0;
@@ -45,7 +44,7 @@ void loop() {
 uint8_t buttons;
 
 lcd.setCursor(0,0);
-lcd.print("hi");
+lcd.print("h");
 
 
 
