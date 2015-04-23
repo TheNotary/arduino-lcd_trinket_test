@@ -9,8 +9,14 @@ The DS1307 Real Time Clock must be initialized with a separate sketch.
  
 // include the library code:
 #include <Wire.h>
+
+// If on Arduino Uno, use this...
+#include <Adafruit_MCP23017.h>
+#include <Adafruit_RGBLCDShield.h>
+
+// THIS CODE IS FOR A TRINKET OR OTHER TINY 85 BASED SYSTEM TO GET SHIELD AND I2C WORKING!
 // #include <TinyWireM.h>                  // Trinket I2C communications
-#include <TinyAdafruit_RGBLCDShield.h>  // RGB LCD Shield communications
+// #include <TinyAdafruit_RGBLCDShield.h>  // RGB LCD Shield communications
  
 // These defines make it easy to set the backlight color
 #define OFF 0x0
