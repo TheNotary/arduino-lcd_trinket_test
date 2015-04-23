@@ -25,7 +25,8 @@ Ok, this is a little tricky.  Adafruit sells the RPi hat, and also one designed 
 
 Trinket Diagram:  https://learn.adafruit.com/introducing-trinket/pinouts
 
-LCD Plate Diagram: https://forums.adafruit.com/viewtopic.php?f=8&t=72472 
+LCD Plate Diagram: https://learn.adafruit.com/system/assets/assets/000/003/861/original/raspberry_pi_pilcdplate.png?1396802991
+LCD Plate Pins: https://forums.adafruit.com/viewtopic.php?f=8&t=72472 
 
 (LCD Plate -> Trinket)
 ```
