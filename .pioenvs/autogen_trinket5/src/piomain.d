@@ -14,5 +14,4 @@
  .pioenvs/autogen_trinket5/TinyWireM-master/TinyWireM.h \
  .pioenvs/autogen_trinket5/TinyAdafruit_RGBLCDShield/TinyAdafruit_RGBLCDShield.h \
  .pioenvs/autogen_trinket5/FrameworkArduino/Print.h \
- .pioenvs/autogen_trinket5/TinyAdafruit_RGBLCDShield/TinyAdafruit_MCP23017.h \
- .pioenvs/autogen_trinket5/TinyRTCLib-master/TinyRTClib.h
+ .pioenvs/autogen_trinket5/TinyAdafruit_RGBLCDShield/TinyAdafruit_MCP23017.h
