@@ -8,7 +8,8 @@ The DS1307 Real Time Clock must be initialized with a separate sketch.
 **********************/
  
 // include the library code:
-#include <TinyWireM.h>                  // Trinket I2C communications
+#include <Wire.h>
+// #include <TinyWireM.h>                  // Trinket I2C communications
 #include <TinyAdafruit_RGBLCDShield.h>  // RGB LCD Shield communications
  
 // These defines make it easy to set the backlight color
@@ -30,6 +31,7 @@ uint8_t backlight = BLUE;  // Backlight state
 void setup() {
   lcd.begin(16, 2);         // initialize display colums and rows
   lcd.setBacklight(BLUE);  // Set to OFF if you do not want backlight on boot
+  setupBlinking();
 }
  
 void loop() {
@@ -37,8 +39,10 @@ void loop() {
  
   lcd.setCursor(0,0);
   lcd.print("h");
- 
-  // buttons = lcd.readButtons();  // read the buttons on the shield
+
+  blinkOnFor(1000);
+
+  buttons = lcd.readButtons();  // read the buttons on the shield
  
   if(buttons!=0) {                     // if a button was pressed
       if (buttons & BUTTON_UP) {       // if up pressed, increment hours
@@ -62,3 +66,16 @@ void loop() {
 void printzero() {  // prints a zero to the LCD for leading zeros
   lcd.print("0");   // a function saves multiple calls to the print function
 }
+
+void setupBlinking() {
+  pinMode(13, OUTPUT);
+}
+
+// Turns the light on for onDuration,
+// does not control off duration
+void blinkOnFor(int onDuration) {
+  digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)
+  delay(onDuration);              // wait for a second
+  digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW
+}
+
