@@ -32,21 +32,19 @@ The DS1307 Real Time Clock must be initialized with a separate sketch.
 Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
  
 int8_t offset = 0;   // Hour offset set by user with buttons
-uint8_t backlight = BLUE;  // Backlight state
+uint8_t backlight = WHITE;  // Backlight state
  
 void setup() {
   lcd.begin(16, 2);         // initialize display colums and rows
-  lcd.setBacklight(BLUE);  // Set to OFF if you do not want backlight on boot
-  setupBlinking();
+  lcd.setBacklight(WHITE);  // Set to OFF if you do not want backlight on boot
+  // setupBlinking();
 }
  
 void loop() {
   uint8_t buttons;                       // button read value
  
-  lcd.setCursor(0,0);
-  lcd.print("h");
-
-  blinkOnFor(1000);
+  // lcd.setCursor(0,0);
+  lcd.print("hello");
 
   buttons = lcd.readButtons();  // read the buttons on the shield
  
@@ -61,7 +59,7 @@ void loop() {
          if(backlight)                 // if the backlight is on
             backlight=OFF;             //   set it to off
          else                          // else turn on the backlight if off 
-            backlight=BLUE;           //   (you can select any color)
+            backlight=WHITE;           //   (you can select any color)
          lcd.setBacklight(backlight);  // set the new backlight state
       }
    }
