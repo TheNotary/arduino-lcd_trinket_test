@@ -28,43 +28,102 @@ The DS1307 Real Time Clock must be initialized with a separate sketch.
 #define VIOLET 0x5
 #define WHITE 0x7
  
+#define SCREEN_X 0xf
+#define SCREEN_Y 0x2
+
 // The shield uses the I2C SCL and SDA pins. 
 Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
  
-int8_t offset = 0;   // Hour offset set by user with buttons
+int8_t offsetX = 0;   // Hour offset set by user with buttons
+int8_t offsetY = 0;   // Hour offset set by user with buttons
+int8_t frame = 0;   // keeps track of how many frames have gone by
+int8_t lastButtonPress = 0;
+String displayText = "hello";
+boolean doesNeedRedraw;
 uint8_t backlight = WHITE;  // Backlight state
  
 void setup() {
-  lcd.begin(16, 2);         // initialize display colums and rows
+  lcd.begin(SCREEN_X, SCREEN_Y);         // initialize display colums and rows
   lcd.setBacklight(WHITE);  // Set to OFF if you do not want backlight on boot
-  // setupBlinking();
+  doesNeedRedraw = true;
 }
  
 void loop() {
+  if (doesNeedRedraw)
+    draw();
+
+  pollKeys();
+  
+  frame++;
+  if (frame > 63){
+    frame = 7;
+    lastButtonPress = 0;
+  }
+  delay(60);  // wait one second
+}
+
+void draw() {
+  lcd.clear();
+  lcd.setCursor(offsetX,offsetY);
+  lcd.print(displayText);
+
+  doesNeedRedraw = false;
+}
+
+void pollKeys() {
   uint8_t buttons;                       // button read value
- 
-  // lcd.setCursor(0,0);
-  lcd.print("hello");
 
   buttons = lcd.readButtons();  // read the buttons on the shield
  
   if(buttons!=0) {                     // if a button was pressed
-      if (buttons & BUTTON_UP) {       // if up pressed, increment hours
-         offset +=1;
-       }
-      if (buttons & BUTTON_DOWN) {     // if down pressed, decrement hours
-         offset -=1;
-       }
-      if (buttons & BUTTON_SELECT) {   // if select button pressed
-         if(backlight)                 // if the backlight is on
-            backlight=OFF;             //   set it to off
-         else                          // else turn on the backlight if off 
-            backlight=WHITE;           //   (you can select any color)
-         lcd.setBacklight(backlight);  // set the new backlight state
-      }
-   }
-  
-  delay(1000);  // wait one second
+    boolean wasSelectButtonPressedTooRecently = (frame - lastButtonPress) <= 8;
+    doesNeedRedraw = true;
+    if (buttons & BUTTON_RIGHT) {       // if up pressed, increment hours
+      offsetX +=1;
+    }
+    if (buttons & BUTTON_LEFT) {     // if down pressed, decrement hours
+      offsetX -=1;
+    }
+    if (buttons & BUTTON_UP) {       // if up pressed, increment hours
+      offsetY -=1;
+    }
+    if (buttons & BUTTON_DOWN) {     // if down pressed, decrement hours
+      offsetY +=1;
+    }
+    if (buttons & BUTTON_SELECT && !wasSelectButtonPressedTooRecently ) { 
+      lastButtonPress = frame;
+      if(backlight)                 // if the backlight is on
+        backlight=OFF;             //   set it to off
+      else                          // else turn on the backlight if off 
+        backlight=WHITE;           //   (you can select any color)
+      
+      lcd.setBacklight(backlight);  // set the new backlight state
+    }
+    if (buttons & BUTTON_SELECT && wasSelectButtonPressedTooRecently ) { 
+      doesNeedRedraw = false;
+    }
+
+    confineDisplayText();
+  }
+}
+
+void confineDisplayText() {
+  if (offsetX > SCREEN_X) {
+    offsetX = SCREEN_X;
+    doesNeedRedraw = false;
+  }
+  if (offsetX < 0) {
+    offsetX = 0;
+    doesNeedRedraw = false;
+  }
+  if (offsetY >= SCREEN_Y) {
+    offsetY = SCREEN_Y - 1;
+    doesNeedRedraw = false;
+  }
+  if (offsetY < 0) {
+    offsetY = 0;
+    doesNeedRedraw = false;
+  }
 }
  
 void printzero() {  // prints a zero to the LCD for leading zeros
