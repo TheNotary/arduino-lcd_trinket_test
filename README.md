@@ -1,5 +1,3 @@
-This repo is not functional yet.  
-
 # LcdTrinketTest
 
 This repo is just a basic way of getting a trinket to work with Adafruit's LCD module with keypad
@@ -56,7 +54,7 @@ Extra Notes and Code Source:  https://learn.adafruit.com/trinket-rgb-shield-cloc
 
 ## Device Operation
 
-Just start it, and push the buttons to print different stuff to the screen.  
+Start it and push the buttons to move the string 'hello' around on the screen.  Select turns off the backlight.  
 
 ## Trouble Shooting
 
