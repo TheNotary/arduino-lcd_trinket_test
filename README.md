@@ -28,6 +28,7 @@ Trinket Diagram:  https://learn.adafruit.com/introducing-trinket/pinouts
 
 LCD Plate Diagram: https://learn.adafruit.com/system/assets/assets/000/003/861/original/raspberry_pi_pilcdplate.png?1396802991
 LCD Plate Pins: https://forums.adafruit.com/viewtopic.php?f=8&t=72472 
+Pi Pin Reference which teh LCD plate is made for:  https://user-images.githubusercontent.com/799247/173687579-b8c36508-b303-4bc4-bdfd-5bb0edeafcfe.png
 
 (LCD Plate -> Trinket 5v)
 ```
