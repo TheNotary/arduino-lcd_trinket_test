@@ -2,6 +2,8 @@
 
 This repo is just a basic way of getting a trinket to work with Adafruit's LCD module with keypad
 
+![s_20150423_214601](https://cloud.githubusercontent.com/assets/799247/7311494/b238f9e8-ea02-11e4-8905-02ca8588c79a.jpg)
+
 ## Installation
 
 Download this repo with git.  
